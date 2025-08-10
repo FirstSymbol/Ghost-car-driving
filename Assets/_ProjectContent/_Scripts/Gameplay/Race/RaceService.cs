@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
@@ -48,11 +47,6 @@ namespace _ProjectContent._Scripts.Gameplay.Race
       _saveService.AddToSaveables(this);
     }
 
-    public void StartRace()
-    {
-      
-    }
-
     public async void FinishRace()
     {
       OnRaceFinish?.Invoke();
@@ -65,7 +59,6 @@ namespace _ProjectContent._Scripts.Gameplay.Race
     {
       await UniTask.WaitForSeconds(1f);
       await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnMenuSceneLoaded);
-      
     }
 
     private async void OnMenuSceneLoaded()
