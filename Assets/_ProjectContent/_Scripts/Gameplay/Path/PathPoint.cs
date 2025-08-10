@@ -7,14 +7,14 @@ namespace _ProjectContent._Scripts.Gameplay.Path
   [Serializable]
   public class PathPoint
   {
-    public Vector3 Position;
-    public Vector3 Rotation;
+    public SVector3 Position;
+    public SVector3 Rotation;
     public readonly float WheelRotation;
     
     public PathPoint(UnityEngine.Vector3 position, UnityEngine.Vector3 rotation, float wheelRotation)
     {
-      Position = new Vector3(position.x, position.y, position.z);
-      Rotation = new Vector3(rotation.x, rotation.y, rotation.z);
+      Position = new SVector3(position.x, position.y, position.z);
+      Rotation = new SVector3(rotation.x, rotation.y, rotation.z);
       WheelRotation = wheelRotation;
     }
     
