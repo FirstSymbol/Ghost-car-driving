@@ -9,22 +9,20 @@ using Infrastructure.StateMachines.GameLoopStateMachine;
 using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Zenject;
 
-namespace _ProjectContent._Scripts.Gameplay.Race
+namespace Gameplay.Race
 {
   public interface IRaceService : IDataSaveable<RaceData>
   {
-    public Dictionary<int, bool> WaypointsStates { get; set; }
-    public bool RegisterWaypointState(int waypointNumber);
-    public bool UnlockWaypointState(int waypointNumber);
     public Action OnRaceFinish { get; set; } 
     public void Initialize();
   }
-  public class RaceService : IRaceService
+  public class RaceService : IRaceService, IDisposable
   {
     private ISaveService _saveService;
     private GameLoopStateMachine _gameloopStateMachine;
     private ISceneLoaderService _sceneLoaderService;
     private IAssetReferenceProvider _assetReferenceProvider;
+    private IWaypointsService _waypointService;
 
     public Dictionary<int, bool> WaypointsStates { get; set; } = new Dictionary<int, bool>();
     public Action OnRaceFinish { get; set; } 
@@ -33,26 +31,28 @@ namespace _ProjectContent._Scripts.Gameplay.Race
     private void Inject(ISaveService saveService,
       IGameLoopStateMachineFactory  gameLoopStateMachineFactory,
       IAssetReferenceProvider assetReferenceProvider,
-      ISceneLoaderService sceneLoaderService)
+      ISceneLoaderService sceneLoaderService,
+      IWaypointsService waypointService)
     {
       _gameloopStateMachine = gameLoopStateMachineFactory.GetFrom(this);
       _saveService = saveService;
       _assetReferenceProvider = assetReferenceProvider;
       _sceneLoaderService = sceneLoaderService;
+      _waypointService = waypointService;
     }
 
     public void Initialize()
     {
       SaveData = _saveService.Load(this) ?? new RaceData();
       _saveService.AddToSaveables(this);
+      _waypointService.OnAllWaypointsUnlocked += FinishRace;
     }
 
     public async void FinishRace()
     {
-      OnRaceFinish?.Invoke();
       SaveData.RaceNumber++;
-      await WaitToLoad();
-      
+      OnRaceFinish?.Invoke();
+      //await WaitToLoad();
     }
 
     private async UniTask WaitToLoad()
@@ -66,22 +66,14 @@ namespace _ProjectContent._Scripts.Gameplay.Race
       await _gameloopStateMachine.Enter<MenuState>();
     }
 
-    public bool RegisterWaypointState(int waypointNumber) => 
-      WaypointsStates.TryAdd(waypointNumber, false);
     
-    public bool UnlockWaypointState(int waypointNumber)
-    {
-      if (!WaypointsStates.ContainsKey(waypointNumber-1))
-      {
-        WaypointsStates.Remove(waypointNumber);
-        if (WaypointsStates.Values.Count == 0) 
-          FinishRace();
-        return true;
-      }
-      return false;
-    }
 
     public SaveKey SaveKey => SaveKey.RaceData;
     public RaceData SaveData { get; private set; }
+
+    public void Dispose()
+    {
+      _waypointService.OnAllWaypointsUnlocked -= FinishRace;
+    }
   }
 }

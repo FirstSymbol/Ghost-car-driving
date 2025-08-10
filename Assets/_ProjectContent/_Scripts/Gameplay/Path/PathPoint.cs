@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
-namespace _ProjectContent._Scripts.Gameplay.Path
+namespace Gameplay.Path
 {
   [Serializable]
   public class PathPoint
@@ -10,16 +9,22 @@ namespace _ProjectContent._Scripts.Gameplay.Path
     public SVector3 Position;
     public SVector3 Rotation;
     public readonly float WheelRotation;
-    
-    public PathPoint(UnityEngine.Vector3 position, UnityEngine.Vector3 rotation, float wheelRotation)
+
+    public PathPoint(Vector3 position, Vector3 rotation, float wheelRotation)
     {
       Position = new SVector3(position.x, position.y, position.z);
       Rotation = new SVector3(rotation.x, rotation.y, rotation.z);
       WheelRotation = wheelRotation;
     }
-    
-    public UnityEngine.Vector3 GetPosition() => new (Position.X, Position.Y, Position.Z);
-    public UnityEngine.Vector3 GetRotation() => new (Rotation.X, Rotation.Y, Rotation.Z);
 
+    public Vector3 GetPosition()
+    {
+      return new Vector3(Position.X, Position.Y, Position.Z);
+    }
+
+    public Vector3 GetRotation()
+    {
+      return new Vector3(Rotation.X, Rotation.Y, Rotation.Z);
+    }
   }
 }

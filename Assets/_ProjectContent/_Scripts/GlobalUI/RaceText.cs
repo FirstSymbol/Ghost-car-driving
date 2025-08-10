@@ -1,5 +1,6 @@
 ﻿using System;
-using _ProjectContent._Scripts.Gameplay.Race;
+using Gameplay.Race;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -14,10 +15,22 @@ namespace GlobalUI
     [Inject]
     private void Inject(IRaceService raceService) => 
       _raceService =  raceService;
-
+    
     private void Start()
     {
-      text.text = $"RACE {_raceService.SaveData.RaceNumber}"; 
+      _raceService.OnRaceFinish += UpdateText;
+      UpdateText();
+    }
+
+    private void UpdateText()
+    {
+      transform.DOShakeScale(0.3f, 0.2f);
+      text.text = $"RACE {_raceService.SaveData.RaceNumber}";
+    }
+
+    private void OnDestroy()
+    {
+      _raceService.OnRaceFinish -= UpdateText;
     }
   }
 }

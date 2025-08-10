@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelsTransform1: {fileID: 1889966461190727532}
   wheelsTransform2: {fileID: 5915578489371347710}
+  loop: 1
   unitsPerSecond: 20
 --- !u!114 &6167050408683749639
 MonoBehaviour:
@@ -267,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c575a25752ee4eedb2379e4aa3832692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathPlayer: {fileID: 4338985302172005569}
 --- !u!4 &5915578489371347710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1742045521215583919, guid: da02f5769df5d7d44973d89657a73f6a, type: 3}

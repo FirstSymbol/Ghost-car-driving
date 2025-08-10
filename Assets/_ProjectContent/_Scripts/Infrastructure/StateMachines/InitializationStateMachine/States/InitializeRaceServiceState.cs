@@ -1,4 +1,4 @@
-﻿using _ProjectContent._Scripts.Gameplay.Race;
+﻿using Gameplay.Race;
 using Cysharp.Threading.Tasks;
 using Infrastructure.StateMachines.StateMachine;
 using JetBrains.Annotations;

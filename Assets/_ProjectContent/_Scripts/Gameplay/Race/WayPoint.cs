@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace _ProjectContent._Scripts.Gameplay.Race
+namespace Gameplay.Race
 {
   [RequireComponent(typeof(Collider))]
   public class WayPoint : MonoBehaviour
   {
     public int wayPointNumber;
 
-    private IRaceService _raceService;
+    private IWaypointsService _waypointService;
 
     [Inject]
-    private void Inject(IRaceService raceService)
+    private void Inject(IWaypointsService waypointService)
     {
-      _raceService = raceService;
+      _waypointService = waypointService;
     }
 
     private void Start()
     {
-      if (!_raceService.RegisterWaypointState(wayPointNumber))
+      if (!_waypointService.RegisterWaypoint(wayPointNumber))
       {
 #if DEV
         Debug.LogError($"Waypoint {wayPointNumber} has already been registered therefore, it will be deleted");
@@ -29,8 +29,7 @@ namespace _ProjectContent._Scripts.Gameplay.Race
 
     private void OnTriggerEnter(Collider other)
     {
-      if (_raceService.UnlockWaypointState(wayPointNumber))
-        Destroy(gameObject);
+      _waypointService.UnlockWaypoint(wayPointNumber);
     }
   }
 }

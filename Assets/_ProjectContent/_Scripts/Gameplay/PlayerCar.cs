@@ -1,30 +1,18 @@
-﻿using _ProjectContent._Scripts.Gameplay.Race;
+﻿using System;
+using Gameplay.Path;
 using Infrastructure.Factories;
-using Infrastructure.Providers.AssetReferenceProvider;
-using Infrastructure.Services.SceneLoading;
-using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Zenject;
 
-namespace _ProjectContent._Scripts.Gameplay
+namespace Gameplay
 {
   public class PlayerCar : MonoBehaviour
   {
-    private ISceneLoaderService _sceneLoaderService;
-    private IAssetReferenceProvider _assetReferenceProvider;
+    public Action OnDeath { get; set; } 
+    public new Rigidbody rigidbody;
+    public PathRecorder pathRecorder;
+    
     private IGameLoopStateMachineFactory _gameLoopStateMachineFactory;
-    private IRaceService _raceService;
     private bool _isDeath;
-
-    [Inject]
-    private void Inject(ISceneLoaderService sceneLoaderService, IAssetReferenceProvider  assetReferenceProvider, IGameLoopStateMachineFactory gameLoopStateMachineFactory, IRaceService raceService)
-    {
-      _sceneLoaderService = sceneLoaderService;
-      _assetReferenceProvider = assetReferenceProvider;
-      _gameLoopStateMachineFactory = gameLoopStateMachineFactory;
-      _raceService = raceService;
-    }
 
     private void Update()
     {
@@ -32,15 +20,15 @@ namespace _ProjectContent._Scripts.Gameplay
         Death();
     }
 
+    public void SetZeroVelocity()
+    {
+      rigidbody.linearVelocity = Vector3.zero;
+    }
+    
     public async void Death()
     {
-      _isDeath = true;
-      _raceService.WaypointsStates.Clear();
-      _raceService.SaveData.RaceNumber++;
-      await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnSceneLoaded);
+      pathRecorder.ResetPath();
+      OnDeath?.Invoke();
     }
-
-    public async void OnSceneLoaded() => 
-      await _gameLoopStateMachineFactory.GetFrom(this).Enter<MenuState>();
   }
 }

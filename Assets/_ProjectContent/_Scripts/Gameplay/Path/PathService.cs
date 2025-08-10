@@ -2,25 +2,22 @@
 using UnityEngine;
 using Zenject;
 
-namespace _ProjectContent._Scripts.Gameplay.Path
+namespace Gameplay.Path
 {
   public interface IPathService : IDataSaveable<PathData>
   {
     public void Initialize();
   }
+
   public class PathService : MonoBehaviour, IPathService
   {
+    private static readonly float DefaultCheckStateInterval = 0.05f;
     [field: SerializeField] public float CheckStateInterval { get; private set; } = DefaultCheckStateInterval;
+
     /// <summary>
-    /// The time interval in seconds after which a new point is saved.
+    ///   The time interval in seconds after which a new point is saved.
     /// </summary>
     private ISaveService _saveService;
-
-    private static readonly float DefaultCheckStateInterval = 0.05f;
-
-    [Inject]
-    public void Inject(ISaveService saveService) => 
-      _saveService = saveService;
 
     public void Initialize()
     {
@@ -31,5 +28,11 @@ namespace _ProjectContent._Scripts.Gameplay.Path
 
     public SaveKey SaveKey => SaveKey.PathData;
     public PathData SaveData { get; private set; }
+
+    [Inject]
+    public void Inject(ISaveService saveService)
+    {
+      _saveService = saveService;
+    }
   }
 }

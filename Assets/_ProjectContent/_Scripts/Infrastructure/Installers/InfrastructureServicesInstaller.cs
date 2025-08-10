@@ -1,5 +1,5 @@
-﻿using _ProjectContent._Scripts.Gameplay.Path;
-using _ProjectContent._Scripts.Gameplay.Race;
+﻿using Gameplay.Path;
+using Gameplay.Race;
 using Infrastructure.Services.Analytics;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
@@ -21,6 +21,12 @@ namespace Infrastructure.Installers
             BindSaveService();
             BindPathService();
             BindRaceService();
+            BindWaypointsService();
+        }
+
+        private void BindWaypointsService()
+        {
+            Container.BindInterfacesTo<WaypointsService>().FromNew().AsSingle().NonLazy();
         }
 
         private void BindRaceService()
