@@ -24,7 +24,7 @@ namespace Gameplay
       }
       else
       {
-        _raceService.SaveData.HasGhost = true;
+        _raceService.SaveData.HasGhost = false;
         _raceService.OnRaceFinish += OnRaceFinish;
       }
     }
@@ -60,7 +60,10 @@ namespace Gameplay
 
     private async void OnRaceFinish()
     {
-      await SpawnGhost();
+      if (!_raceService.SaveData.HasGhost)
+      {
+        await SpawnGhost();
+      }
     }
   }
 }
