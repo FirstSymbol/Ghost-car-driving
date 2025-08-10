@@ -6,7 +6,7 @@ namespace _ProjectContent._Scripts.Gameplay.Path
   [Serializable]
   public class PathData
   {
-    public List<PathPoint> PathPoints { get; private set; }
+    public List<PathPoint> PathPoints { get; set; }
     /// <summary>
     /// The time interval in seconds after which a new point is saved.
     /// </summary>

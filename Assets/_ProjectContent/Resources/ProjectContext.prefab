@@ -465,6 +465,12 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+    <GhostCar>k__BackingField:
+      m_AssetGUID: 6a3babcea2789264cb1635e4a5e17c15
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
     <MenuScene>k__BackingField:
       m_AssetGUID: 678df822d585bd94592593f6498c3fb2
       m_SubObjectName: 
@@ -1032,9 +1038,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 10.08.2025 4:36:34
-  _currentDate: 10.08.2025 4:41:20
-  _minutesFromLastFetch: -4
+  _lastFetchDate: 10.08.2025 8:42:45
+  _currentDate: 10.08.2025 8:42:57
+  _minutesFromLastFetch: 0
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeMinimalLoadTime\":
     0.2\r\n  }\r\n}"
 --- !u!1 &9098501253840493479

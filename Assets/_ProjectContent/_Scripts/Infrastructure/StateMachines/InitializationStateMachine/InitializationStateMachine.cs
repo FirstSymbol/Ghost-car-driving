@@ -21,6 +21,7 @@ namespace Infrastructure.StateMachines.InitializationStateMachine
             RegisterState(statesFactory.Create<InitializeUnityServicesState>(this));
             RegisterState(statesFactory.Create<InitializeSaveServiceState>(this));
             RegisterState(statesFactory.Create<InitializePathServiceState>(this));
+            RegisterState(statesFactory.Create<InitializeRaceServiceState>(this));
             RegisterState(statesFactory.Create<InitializationFinalizerState>(this));
         }
     }

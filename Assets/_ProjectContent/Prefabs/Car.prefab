@@ -735,7 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5072948313737277850}
   - component: {fileID: 1949103774743283861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,6 +1157,7 @@ GameObject:
   - component: {fileID: 8005116222491571050}
   - component: {fileID: 5906348755948731471}
   - component: {fileID: 4616952128204601060}
+  - component: {fileID: 3764310413130023121}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1387,7 +1388,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1646,6 +1647,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelsTransform: {fileID: 5768587871591750461}
+--- !u!114 &3764310413130023121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6152425701517148550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a09d4889184b45b814a10e926047a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7046718591532254328
 GameObject:
   m_ObjectHideFlags: 0

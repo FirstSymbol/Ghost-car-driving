@@ -5,5 +5,6 @@
         //changing is prohibited
         PrivacyPolicyState = 1,
         PathData = 2,
+        RaceData = 3,
     }
 }

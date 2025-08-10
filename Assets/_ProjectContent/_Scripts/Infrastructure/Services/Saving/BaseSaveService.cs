@@ -40,12 +40,12 @@ namespace Infrastructure.Services.Saving
 
         public void Initialize()
         {
-            Application.focusChanged += OnApplicationFocus;
+            //Application.focusChanged += OnApplicationFocus;
         }
 
         public void Dispose()
         {
-            Application.focusChanged -= OnApplicationFocus;
+            //Application.focusChanged -= OnApplicationFocus;
         }
 
         private void OnApplicationFocus(bool focusStatus)

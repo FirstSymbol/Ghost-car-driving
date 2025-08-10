@@ -41,7 +41,9 @@ namespace _ProjectContent._Scripts.Gameplay.Path
         pathPointsRot[i] = _pathService.SaveData.PathPoints[i].GetRotation();
       }
       //this.t = Time.time;
-      pathTween = gameObject.transform.DOPath(pathPointsPos, unitsPerSecond, PathType.CatmullRom, PathMode.Full3D, 20)
+      transform.DOMove(_pathService.SaveData.PathPoints[0].GetPosition(),0);
+      transform.DORotate(_pathService.SaveData.PathPoints[0].GetRotation(), 0);
+      pathTween = gameObject.transform.DOPath(pathPointsPos, unitsPerSecond, PathType.CatmullRom, PathMode.Full3D, 10)
         .SetSpeedBased()
         .SetEase(Ease.Linear)
         .OnWaypointChange(UpdateRotation)
@@ -53,16 +55,13 @@ namespace _ProjectContent._Scripts.Gameplay.Path
     private void UpdateRotation(int index)
     {
       if (index >= pathPointsPos.Length)
-      {
         return;
-      }
       var diff = (pathPointsPos[index + 1] - pathPointsPos[index]).magnitude/unitsPerSecond;
-        
       var t = pathTween.Duration()/_pathService.SaveData.PathPoints.Count;
       gameObject.transform.DOLocalRotate(_pathService.SaveData.PathPoints[index+1].GetRotation(), diff)
         .SetEase(Ease.Linear);
-      wheelsTransform1.DOLocalRotate(new Vector3(0,_pathService.SaveData.PathPoints[index+1].WheelRotation,0), _pathService.SaveData.CheckStateInterval).SetEase(Ease.Linear);
-      wheelsTransform2.DOLocalRotate(new Vector3(0,_pathService.SaveData.PathPoints[index+1].WheelRotation,0), _pathService.SaveData.CheckStateInterval).SetEase(Ease.Linear);
+      wheelsTransform1.DOLocalRotate(new Vector3(0,_pathService.SaveData.PathPoints[index+1].WheelRotation,0), diff).SetEase(Ease.Linear);
+      wheelsTransform2.DOLocalRotate(new Vector3(0,_pathService.SaveData.PathPoints[index+1].WheelRotation,0), diff).SetEase(Ease.Linear);
     }
   }
 }

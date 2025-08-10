@@ -8,5 +8,6 @@ namespace Infrastructure.Providers.AssetReferenceProvider
         AssetReferenceGameObject DebugRootAssetReference { get; }
         AssetReference MenuScene { get; }
         AssetReference GamePlayScene { get; }
+        public AssetReferenceGameObject GhostCar { get; }
     }
 }

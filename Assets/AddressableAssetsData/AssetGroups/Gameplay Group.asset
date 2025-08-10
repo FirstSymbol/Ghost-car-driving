@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Gameplay Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Gameplay Group
+  m_GUID: 34e02b802f46a8847a7883dcaf4bde24
+  m_SerializeEntries:
+  - m_GUID: 6a3babcea2789264cb1635e4a5e17c15
+    m_Address: GhostCar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d0501d0c0df8423429d46e9fd5da9572, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4835f03882b10374fb10f47240211c77, type: 2}
+    - {fileID: 11400000, guid: 0f16e01f67ab5f4409c97fdc683a3803, type: 2}
+    - {fileID: 11400000, guid: 19a5358ffa791ab47be713773d439c69, type: 2}
