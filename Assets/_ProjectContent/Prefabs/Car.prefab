@@ -339,7 +339,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07f44fe3e9c462146a7769b976c50ec4, type: 2}
+  - {fileID: 2100000, guid: d2344366b80fe3d4f886ec412e0174fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cd6131e3984ffba494e98ff7e5d14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelsTransform: {fileID: 4691737299522374427}
+  wheelsTransform: {fileID: 5768587871591750461}
 --- !u!1 &7046718591532254328
 GameObject:
   m_ObjectHideFlags: 0

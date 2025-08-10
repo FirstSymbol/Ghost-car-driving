@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b29da7121b40b1a9e931d29f73d87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CheckStateInterval>k__BackingField: 0.05
+  <CheckStateInterval>k__BackingField: 0.075
 --- !u!1 &6039608735036703360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,9 +1032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d890d1e5e5134e00a06b8edc6adb4794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastFetchDate: 10.08.2025 3:02:01
-  _currentDate: 10.08.2025 3:04:52
-  _minutesFromLastFetch: -2
+  _lastFetchDate: 10.08.2025 4:36:34
+  _currentDate: 10.08.2025 4:41:20
+  _minutesFromLastFetch: -4
   _cachedConfigString: "{\r\n  \"infrastructure_config\": {\r\n    \"FakeMinimalLoadTime\":
     0.2\r\n  }\r\n}"
 --- !u!1 &9098501253840493479

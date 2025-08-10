@@ -18,7 +18,7 @@ namespace _ProjectContent._Scripts.Gameplay.Path
 
     private async void Start()
     {
-      StopRecording();
+      StartRecording();
       await Recording();
     }
 
@@ -33,7 +33,7 @@ namespace _ProjectContent._Scripts.Gameplay.Path
       await UniTask.WaitWhile(() => !_isRecording);
       while (_isRecording)
       {
-        _pathService.SaveData.PathPoints.Push(new PathPoint(gameObject.transform.position, gameObject.transform.eulerAngles, wheelsTransform.eulerAngles.y));
+        _pathService.SaveData.PathPoints.Add(new PathPoint(gameObject.transform.position, gameObject.transform.eulerAngles, wheelsTransform.eulerAngles.y));
         await UniTask.WaitForSeconds(_pathService.SaveData.CheckStateInterval);
       }
     }

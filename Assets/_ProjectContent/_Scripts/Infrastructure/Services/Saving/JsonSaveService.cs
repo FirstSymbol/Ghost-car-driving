@@ -61,7 +61,7 @@ namespace Infrastructure.Services.Saving
         {
             if (useDefaultFileName || _cachedSaveFileName == null) fileName = _defaultFileName;
             else if (fileName == null && _cachedSaveFileName != null) fileName = _cachedSaveFileName;
-
+            
             var path = $"{Application.persistentDataPath}/{fileName}.txt";
             var serializedObject = JsonConvert.SerializeObject(_readyToSaveDictionary, Formatting.Indented);
             File.WriteAllText(path, serializedObject);
