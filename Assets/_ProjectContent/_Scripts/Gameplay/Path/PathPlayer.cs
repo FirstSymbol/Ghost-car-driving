@@ -18,6 +18,7 @@ namespace Gameplay.Path
     private IPathService _pathService;
     private Vector3[] pathPointsPos;
     private Vector3[] pathPointsRot;
+    private float[] wheelRotations;
     private Tween pathTween;
     private CancellationTokenSource  _tokenSource;
     private float t = 0;
@@ -38,10 +39,12 @@ namespace Gameplay.Path
     {
       pathPointsPos = new Vector3[_pathService.SaveData.PathPoints.Count];
       pathPointsRot = new Vector3[_pathService.SaveData.PathPoints.Count];
+      wheelRotations = new float[_pathService.SaveData.PathPoints.Count];
       for (var i = 0; i < _pathService.SaveData.PathPoints.Count; i++)
       {
         pathPointsPos[i] = _pathService.SaveData.PathPoints[i].GetPosition();
         pathPointsRot[i] = _pathService.SaveData.PathPoints[i].GetRotation();
+        wheelRotations[i] = _pathService.SaveData.PathPoints[i].WheelRotation;
       }
       
       pathTween = gameObject.transform.DOPath(pathPointsPos, unitsPerSecond, PathType.CatmullRom)
@@ -69,11 +72,11 @@ namespace Gameplay.Path
         return;
       var diff = (pathPointsPos[index + 1] - pathPointsPos[index]).magnitude / unitsPerSecond;
       var t = pathTween.Duration() / _pathService.SaveData.PathPoints.Count;
-      gameObject.transform.DOLocalRotate(_pathService.SaveData.PathPoints[index + 1].GetRotation(), diff)
+      gameObject.transform.DOLocalRotate(pathPointsRot[index + 1], diff)
         .SetEase(Ease.Linear);
-      wheelsTransform1.DOLocalRotate(new Vector3(0, _pathService.SaveData.PathPoints[index + 1].WheelRotation, 0), diff)
+      wheelsTransform1.DOLocalRotate(new Vector3(0, wheelRotations[index+1], 0), diff)
         .SetEase(Ease.Linear);
-      wheelsTransform2.DOLocalRotate(new Vector3(0, _pathService.SaveData.PathPoints[index + 1].WheelRotation, 0), diff)
+      wheelsTransform2.DOLocalRotate(new Vector3(0, wheelRotations[index+1], 0), diff)
         .SetEase(Ease.Linear);
     }
   }
