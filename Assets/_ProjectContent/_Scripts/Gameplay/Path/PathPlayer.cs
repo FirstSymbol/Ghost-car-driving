@@ -49,7 +49,7 @@ namespace Gameplay.Path
       
       pathTween = gameObject.transform.DOPath(pathPointsPos, unitsPerSecond, PathType.CatmullRom)
         .SetSpeedBased()
-        .SetEase(Ease.Linear)
+        .SetEase(Ease.InOutSine)
         .OnWaypointChange(UpdateRotation)
         .OnComplete(CompletePath);
 
@@ -73,7 +73,7 @@ namespace Gameplay.Path
       var diff = (pathPointsPos[index + 1] - pathPointsPos[index]).magnitude / unitsPerSecond;
       var t = pathTween.Duration() / _pathService.SaveData.PathPoints.Count;
       gameObject.transform.DOLocalRotate(pathPointsRot[index + 1], diff)
-        .SetEase(Ease.Linear);
+        .SetEase(Ease.InOutSine);
       wheelsTransform1.DOLocalRotate(new Vector3(0, wheelRotations[index+1], 0), diff)
         .SetEase(Ease.Linear);
       wheelsTransform2.DOLocalRotate(new Vector3(0, wheelRotations[index+1], 0), diff)

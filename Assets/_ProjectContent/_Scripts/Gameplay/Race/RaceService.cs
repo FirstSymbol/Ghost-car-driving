@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Infrastructure.Factories;
 using Infrastructure.Providers.AssetReferenceProvider;
 using Infrastructure.Services.Saving;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.StateMachines.GameLoopStateMachine;
-using Infrastructure.StateMachines.GameLoopStateMachine.States;
 using Zenject;
 
 namespace Gameplay.Race
@@ -20,11 +17,7 @@ namespace Gameplay.Race
   {
     private ISaveService _saveService;
     private GameLoopStateMachine _gameloopStateMachine;
-    private ISceneLoaderService _sceneLoaderService;
-    private IAssetReferenceProvider _assetReferenceProvider;
     private IWaypointsService _waypointService;
-
-    public Dictionary<int, bool> WaypointsStates { get; set; } = new Dictionary<int, bool>();
     public Action OnRaceFinish { get; set; } 
     
     [Inject]
@@ -36,8 +29,6 @@ namespace Gameplay.Race
     {
       _gameloopStateMachine = gameLoopStateMachineFactory.GetFrom(this);
       _saveService = saveService;
-      _assetReferenceProvider = assetReferenceProvider;
-      _sceneLoaderService = sceneLoaderService;
       _waypointService = waypointService;
     }
 
@@ -48,25 +39,12 @@ namespace Gameplay.Race
       _waypointService.OnAllWaypointsUnlocked += FinishRace;
     }
 
-    public async void FinishRace()
+    public void FinishRace()
     {
       SaveData.RaceNumber++;
       OnRaceFinish?.Invoke();
-      //await WaitToLoad();
+      _saveService.StoreSaveFile();
     }
-
-    private async UniTask WaitToLoad()
-    {
-      await UniTask.WaitForSeconds(1f);
-      await _sceneLoaderService.LoadScene(_assetReferenceProvider.MenuScene, OnMenuSceneLoaded);
-    }
-
-    private async void OnMenuSceneLoaded()
-    {
-      await _gameloopStateMachine.Enter<MenuState>();
-    }
-
-    
 
     public SaveKey SaveKey => SaveKey.RaceData;
     public RaceData SaveData { get; private set; }

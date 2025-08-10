@@ -7,12 +7,12 @@ public struct SVector3
   public float X;
   public float Y;
   public float Z;
-
+  public float Sum => X + Y + Z;
   public SVector3(float x, float y, float z)
   {
-    this.X = x;
-    this.Y = y;
-    this.Z = z;
+    X = x;
+    Y = y;
+    Z = z;
   }
   
   public SVector3(Vector3 vector)
@@ -25,5 +25,7 @@ public struct SVector3
   {
     return new Vector3(X, Y, Z);
   }
+
+  
 
 }

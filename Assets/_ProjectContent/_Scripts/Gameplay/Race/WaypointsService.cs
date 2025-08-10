@@ -34,7 +34,6 @@ namespace Gameplay.Race
           WaypointsStates[waypointNumber-1] &&
           !WaypointsStates[waypointNumber])
       {
-        Debug.Log("Waypoint Unlock " + waypointNumber);
         WaypointsStates[waypointNumber] = true;
         if (!WaypointsStates.Values.Contains(false))
         {
