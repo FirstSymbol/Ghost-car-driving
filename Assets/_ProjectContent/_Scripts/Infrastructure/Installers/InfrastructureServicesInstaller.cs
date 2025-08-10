@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Analytics;
+﻿using _ProjectContent._Scripts.Gameplay.Path;
+using Infrastructure.Services.Analytics;
 using Infrastructure.Services.CoroutineRunner;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Saving;
@@ -9,6 +10,7 @@ namespace Infrastructure.Installers
 {
     public class InfrastructureServicesInstaller : MonoInstaller
     {
+        public PathService pathService;
         public override void InstallBindings()
         {
             BindConditionalLoggingService();
@@ -16,6 +18,12 @@ namespace Infrastructure.Installers
             BindSceneLoaderService();
             BindAnalyticsLogService();
             BindSaveService();
+            BindPathService();
+        }
+
+        private void BindPathService()
+        {
+            Container.BindInterfacesTo<PathService>().FromInstance(pathService).AsSingle().NonLazy();
         }
 
         private void BindConditionalLoggingService()
